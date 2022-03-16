@@ -1,10 +1,10 @@
 const express = require('express');
 
 const hbs = require('hbs');
+
 const path = require('path');
 const PunkAPIWrapper = require('punkapi-javascript-wrapper');
 
-hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 const app = express();
 const punkAPI = new PunkAPIWrapper();
@@ -13,6 +13,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.get('/beers', async (req, res) => {
   try {
@@ -23,6 +24,10 @@ app.get('/beers', async (req, res) => {
   }
 });
 
+app.get('/beers/id', async (req, res) =>{
+  
+})
+
 app.get('/random-beer', async (req, res) => {
   try {
     const data = await punkAPI.getRandom();
@@ -31,6 +36,8 @@ app.get('/random-beer', async (req, res) => {
     console.log('error', error);
   }
 });
+
+
 
 app.get('/', (req, res) => {
   res.render('index');

@@ -1,12 +1,6 @@
 <section class='beers-section'>
     <article>
-      <picture>
-        <img src={{image_url}} alt='beer img' />
-      </picture>
-      <div class='article-content'>
-        <h2>{{name}}</h2>
-        <p class="tagline">{{tagline}}</p>
-        <p>{{description}}</p>
+            {{> beerpartial this}}
         <strong>Food Paring</strong>
         <ul>
           {{#each food_pairing}}
